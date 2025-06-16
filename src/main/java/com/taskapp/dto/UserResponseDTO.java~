@@ -1,0 +1,4 @@
+package com.taskapp.dto;
+
+public class UserResponseDTO {
+}
