@@ -29,8 +29,8 @@ public class User {
 
 
     // Relationship with tasks (OneToMany)
-    //@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-   // private List<Task> tasks = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks = new ArrayList<>();
 
 
 
