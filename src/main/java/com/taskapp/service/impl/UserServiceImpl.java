@@ -58,7 +58,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String login(UserLoginDTO loginDTO) {
-        // Implementar en el siguiente paso
-        return "Not implemented yet";
+        // Search user by email
+        User user = userRepository.findByEmail(loginDTO.getEmail())
+                .orElseThrow(() -> new RuntimeException("Invalid email or password"));
+
+        // Check password
+        boolean passwordMatch = passwordEncoder.matches(loginDTO.getPassword(), user.getPassword());
+        if (!passwordMatch) {
+            throw new RuntimeException("Invalid email or password");
+        }
+
+        // If valid, return a success message (token will come later)
+        return "Login successful for user: " + user.getUsername();
     }
 }

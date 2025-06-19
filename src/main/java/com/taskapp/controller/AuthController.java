@@ -1,5 +1,6 @@
 package com.taskapp.controller;
 
+import com.taskapp.dto.UserLoginDTO;
 import com.taskapp.dto.UserRegisterDTO;
 import com.taskapp.dto.UserResponseDTO;
 import com.taskapp.service.UserService;
@@ -29,5 +30,18 @@ public class AuthController {
     public ResponseEntity<UserResponseDTO> registerUser(@Valid @RequestBody UserRegisterDTO registerDTO) {
         UserResponseDTO response = userService.register(registerDTO);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+
+    /**
+     * Authenticates user credentials and returns confirmation.
+     *
+     * @param loginDTO email and password
+     * @return login result or future token
+     */
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@Valid @RequestBody UserLoginDTO loginDTO) {
+        String result = userService.login(loginDTO);
+        return ResponseEntity.ok(result);
     }
 }

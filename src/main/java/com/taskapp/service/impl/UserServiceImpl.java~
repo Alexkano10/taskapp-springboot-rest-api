@@ -1,4 +1,0 @@
-package com.taskapp.service.impl;
-
-public class UserServiceImpl {
-}
